@@ -1,0 +1,23 @@
+// Toda tabela deve possuir uma PK (primary key)
+
+// table usuario {
+//   id int [pk, increment]
+//   nome varchar(50) [unique]
+//   email varchar(100)
+//   data_cadastro datetime [default: `now()`]
+// }
+
+// ref: tabela_filha.coluna_fk > tabela_pai.coluna_pk (1:1) ou (1:n) (n:n)
+
+// relacionamento 1:1
+table pessoas {
+  id int [pk, increment]
+  nome varchar(50)
+}
+
+table documentos {
+  id int [pk, increment]
+  id_pessoas int [unique] // O fato da FK ser unique torna esse relacionamento 1:1
+}
+
+ref: documentos.id_pessoas > pessoas.id
