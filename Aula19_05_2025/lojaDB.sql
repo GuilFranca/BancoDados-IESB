@@ -1,6 +1,8 @@
 -- Criação do Banco de Dados
 CREATE DATABASE IF NOT EXISTS lojaDB;
 
+-- DROP DATABASE lojaDB;
+
 -- Conectando com o banco de dados
 USE lojaDB;
 
@@ -27,7 +29,7 @@ CREATE TABLE pedidos(
     valor_total DECIMAL(10, 2),
     
     -- Criando e Referenciando Chave estrangeira
-    FOREIGN KEY (id_cliente) REFERENCES clientes (idclientes)
+    CONSTRAINT fk_idcliente FOREIGN KEY (id_cliente) REFERENCES clientes (idcliente)
 );
 
 INSERT INTO pedidos(id_cliente, data_pedido, valor_total) VALUES
@@ -66,3 +68,42 @@ FROM clientes c
 JOIN pedidos p ON c.idcliente = p.id_cliente
 GROUP BY c.nome;
 
+SELECT * FROM clientes;
+INSERT INTO clientes(nome, email) VALUES 
+("Fernanda", "fernanda@gmail.com"), -- ID 1
+("Josef", "joaozinGaymeplai@gmal.com");
+
+INSERT INTO clientes(nome) VALUES
+('jobervaldo');
+
+-- CONSULTAS E COMANDOS --
+-- COMANDO LIKE: FILTRA NOMES COM PADRÕES ESPECIFICOS
+SELECT * FROM clientes WHERE nome LIKE 'j%';
+
+-- IN: FILTRA MÚLTIPLOS VALORES COM CLAREZA, COMO EXEMPLO CHAVE PRIMÁRIA (ID'S)
+SELECT * FROM pedidos WHERE id_cliente IN (1, 2);
+
+-- max e min: ENCONTRA VALORES EXTERNOS NUMÉRICOS --
+SELECT 
+	MAX(valor_total) AS VALOR_TOTAL_MAXIMO,
+    MIN(valor_total) AS VALOR_TOTAL_MINIMO
+FROM pedidos;
+
+-- ORDER BY: Organiza os resultados da busca no banco de dados --
+SELECT * FROM pedidos ORDER BY valor_total ASC;
+
+-- IS NULL: VERIFICA CAMPOS VAZIOS
+SELECT * FROM clientes WHERE email IS NULL;
+
+-- BETWEEN: FILTRA POR FAIXA DE VALORES
+SELECT * FROM pedidos WHERE valor_total BETWEEN 400 AND 5000;
+
+-- LIMIT: MOSTRA APENAS OS PRIMEIROS RESULTADOS
+SELECT * FROM pedidos ORDER BY valor_total DESC LIMIT 3;
+
+-- DISTINCT: REMOVE DUPLICIDADES
+SELECT DISTINCT id_cliente FROM pedidos;
+
+SELECT * FROM pedidos;
+
+-- INER JOIN: TABELAS COM RELACIONAMENTO
