@@ -53,7 +53,6 @@ FROM clientes c
 INNER JOIN pedidos p ON c.idcliente = p.id_cliente;
 
 -- LEFT JOIN -> Retorna todos os clientes, mesmo os que não tem pedidos (os valores do pedido aparecem como null)
-
 SELECT c.nome, p.data_pedido, p.valor_total
 FROM clientes c
 LEFT JOIN podidos p ON c.idcliente = p.id_cliente;
@@ -107,3 +106,6 @@ SELECT DISTINCT id_cliente FROM pedidos;
 SELECT * FROM pedidos;
 
 -- INER JOIN: TABELAS COM RELACIONAMENTO
+SELECT c.nome, p.data_pedido, p.valor_total
+FROM clientes c
+INNER JOIN pedidos p ON c.idcliente = p.id_cliente;
