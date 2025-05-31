@@ -49,4 +49,23 @@ FROM autor a
 LEFT JOIN livro l ON a.id_autor = l.id_autor;
 
 -- Selecionando valores com GROUP BY
+SELECT a.nome AS autor, COUNT(l.id_livro) AS total_livros
+FROM autor a
+LEFT JOIN livro l ON a.id_autor = l.id_autor
+GROUP BY a.id_autor, a.nome;
 
+-- Selecionando com HAVING
+SELECT a.nome AS autor, COUNT(l.id_livro) AS total_livros
+FROM autor a
+LEFT JOIN livro l ON a.id_autor = l.id_autor
+GROUP BY a.id_autor, a.nome
+HAVING COUNT(l.id_livro) >= 2;
+
+-- Realizando atualização de atributos dentro da tabela
+UPDATE autor
+SET nome = 'Gomes'
+WHERE id_autor = 3;
+
+--  Realizando Delete de linha 
+DELETE FROM livro
+WHERE id_livro = 4;
