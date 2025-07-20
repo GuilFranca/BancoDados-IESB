@@ -6,13 +6,13 @@ SELECT titulo, lancamento FROM livro WHERE assunto = "P" AND editora = 1;
 
 -- Mosta o titulo e o preco de todos os livros do Jose Bonifacio
 SELECT 
-	L.titulo,
+    L.titulo,
     L.preco
 FROM
-	Livro L
+    Livro L
 JOIN
-	controle_aluno_livro CAL ON L.codigo_livro = CAL.codigo_livro
+    controle_aluno_livro CAL ON L.codigo_livro = CAL.codigo_livro
 JOIN
-	aluno A ON CAL.matricula = A.matricula
+    aluno A ON CAL.matricula = A.matricula
 WHERE
-	A.nome = 'Jose Bonifacio';
+     A.nome = 'Jose Bonifacio';
