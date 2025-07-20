@@ -1,4 +1,7 @@
 CREATE DATABASE miolo_grafica;
+
+-- DROP DATABASE miolo_grafica;
+
 USE miolo_grafica;
 
 CREATE TABLE loja (
@@ -102,8 +105,3 @@ CREATE TABLE funcionario_destaque (
     motivo VARCHAR(255),
     FOREIGN KEY (funcionario_id) REFERENCES funcionario(id)
 );
-
-CREATE TABLE login_log (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_email VARCHAR(100),
-    tipo_usuario ENUM('cliente',_
