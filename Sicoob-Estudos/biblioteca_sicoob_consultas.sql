@@ -15,4 +15,4 @@ JOIN
 JOIN
     aluno A ON CAL.matricula = A.matricula
 WHERE
-     A.nome = 'Jose Bonifacio';
+    A.nome = 'Jose Bonifacio';
