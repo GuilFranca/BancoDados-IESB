@@ -4,6 +4,7 @@
 SELECT titulo, preco FROM  livro;
 
 
+
 -- Consultas com relação a data.
 SELECT * FROM aluno WHERE data_nascimento = '2011-01-09';
 
@@ -20,10 +21,12 @@ FROM aluno
 WHERE MONTH(data_nascimento) = 2 AND DAY(data_nascimento) = 1;
 
 
+
 -- Filtragem com Múltiplas Condições: Liste os livros que têm 'Banco de Dados' no título E cujo preço é maior que R$ 50,00.
 SELECT *
 FROM livro
 WHERE titulo LIKE '%Banco de dados%' AND preco > 50.00;
+
 
 
 -- Ordenação de Resultados: Mostre todos os livros, ordenados pelo título em ordem alfabética crescente.
@@ -50,6 +53,7 @@ FROM livro
 WHERE titulo = 'Banco de dados';
 
 
+
 -- Agregação e Agrupamento: Qual é o preço médio dos livros?
 SELECT AVG(preco) AS preco_medio -- AVG faz o calculo da média
 FROM livro;
@@ -62,6 +66,7 @@ FROM livro;
 
 SELECT MIN(preco) AS min_preco
 FROM livro;
+
 
 
 --  Contagem com Agrupamento: Conte quantos livros cada editora possui (assumindo que 'editora' é um código numérico).
@@ -79,8 +84,28 @@ JOIN controle_aluno_livro CAL ON A.matricula = CAL.matricula
 GROUP BY A.matricula, A.nome;
 
 
+
 -- Questão 7: Junção de Tabelas (INNER JOIN): Liste o nome do aluno e o título do livro que ele pegou emprestado.
 SELECT a.nome, l.titulo
 FROM aluno a
 INNER JOIN controle_aluno_livro cal ON a.matricula = cal.matricula
 INNER JOIN livro l ON cal.codigo_livro = l.codigo_livro;
+
+
+
+-- Questão 8: Junção de Tabelas (LEFT JOIN): Liste todos os livros e, se houver, o nome do aluno que o pegou emprestado. Inclua livros que não foram emprestados.
+SELECT l.titulo, a.nome
+FROM livro l
+LEFT JOIN controle_aluno_livro cal ON l.codigo_livro = cal.codigo_livro
+LEFT JOIN aluno a ON cal.matricula = a.matricula;
+
+SELECT l.titulo, a.nome
+FROM aluno a
+LEFT JOIN controle_aluno_livro cal ON a.matricula = cal.matricula
+LEFT JOIN livro l ON cal.codigo_livro = l.codigo_livro;
+
+
+-- Subconsulta: Encontre o título do livro com o preço mais alto.
+SELECT titulo, preco
+FROM livro
+WHERE preco = (SELECT MAX(preco) FROM livro);

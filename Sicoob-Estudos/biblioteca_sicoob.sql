@@ -1,4 +1,4 @@
-CREATE DATABASE biblioteca_sicoob;
+CREATE DATABASE IF NOT EXISTS biblioteca_sicoob;
 
 USE biblioteca_sicoob;
 
